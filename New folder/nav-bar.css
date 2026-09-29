@@ -1,0 +1,13 @@
+nav {
+  color: aqua;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: black;
+}
