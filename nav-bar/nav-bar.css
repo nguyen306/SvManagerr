@@ -1,0 +1,99 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: #fff;
+  color: #1f2a3a;
+}
+
+/* ===== Sidebar ===== */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: #eaf2fb;
+  border-right: 1px solid #d9e5f3;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 14px;
+  gap: 14px;
+}
+
+/* ===== Logo ===== */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 8px;
+  text-decoration: none;
+  color: #12263f;
+}
+.logoutc { width: 40px; height: 40px; object-fit: contain; border-radius: 6px; }
+.sv-text { font-size: 17px; font-weight: 700; line-height: 1.1; }
+
+/* ===== Menu ===== */
+.menu { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+
+.nav-link {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: #1f2a3a;
+  font-size: 14.5px;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.nav-link:hover { background: #dbe8f7; }
+.nav-link.active { background: #cfe3fa; color: #1459b3; font-weight: 600; }
+.nav-link:focus-visible { outline: 2px solid #2f7de1; outline-offset: 2px; }
+
+/* ===== Phần dưới ===== */
+.nav-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+  border-top: 1px solid #d3e1f2;
+}
+
+/* ===== User ===== */
+.user-profile { position: relative; }
+.avatar-user {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px; border-radius: 8px; cursor: pointer;
+}
+.avatar-user:hover { background: #dbe8f7; }
+.username { font-size: 14.5px; font-weight: 600; }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0; right: 0;
+  background: #fff;
+  border: 1px solid #d3e1f2;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(18,38,63,.12);
+  padding: 6px;
+}
+.dropdown-menu.show { display: block; }
+.dropdown-item {
+  display: block; padding: 9px 12px; border-radius: 6px;
+  color: #1f2a3a; font-size: 14px; text-decoration: none;
+}
+.dropdown-item:hover { background: #eaf2fb; }
+
+/* Chừa chỗ cho nội dung trang */
+body { margin-left: 260px; }
+
+@media (max-width: 720px) {
+  .nav-bar { width: 220px; }
+  body { margin-left: 220px; }
+}
