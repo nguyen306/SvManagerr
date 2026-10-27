@@ -3,62 +3,200 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="nguyen hoang nhat" />
     <title>Quản lý sinh viên</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./nav-bar.css" />
   </head>
   <body>
-    <nav class="nav-bar">
-      <div class="container">
-        <!-- Logo -->
+    <nav class="nav-bar" id="navBar">
+      <!-- Đầu thanh: nút thu gọn + logo -->
+      <div class="nav-head">
+        <button
+          class="toggle-btn"
+          id="toggleNav"
+          type="button"
+          aria-label="Thu gọn / mở rộng menu"
+          title="Thu gọn / mở rộng"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="26"
+            height="26"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 5h18M12 10h9M12 14h9M3 19h18M8 9l-4 3 4 3z" />
+          </svg>
+        </button>
         <a href="#" class="navbar-logo">
           <img class="logoutc" src="./logoutc.png" alt="Logo UTC" />
           <span class="sv-text">Sv Manager</span>
         </a>
-  
-        <!-- Menu chính -->
-        <ul class="menu">
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <span>Trang chủ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span>Quản lý thông tin sinh viên</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span>Quản lý học tập</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <span>Quản lý tài chính</span>
-            </a>
-          </li>
-        </ul>
- 
-        <!-- Phần dưới cùng -->
-        <div class="nav-bottom">
-          <div class="user-profile">
-            <div class="avatar-user" id="avatarBtn">
-              <span class="username">Admin</span>
-            </div>
-            <div class="dropdown-menu" id="userDropdown">
-              <a href="#" class="dropdown-item">Hồ sơ cá nhân</a>
-              <a href="#" class="dropdown-item">Cài đặt</a>
-            </div>
+      </div>
+
+      <!-- Menu chính -->
+      <ul class="menu">
+        <li>
+          <a href="#" class="nav-link active" data-tip="Trang chủ">
+            <svg class="ico" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z" />
+            </svg>
+            <span class="label">Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-tip="Quản lý thông tin sinh viên">
+            <svg
+              class="ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <circle cx="8" cy="11" r="2.5" />
+              <path d="M4.5 17c.5-2 2-3 3.5-3s3 1 3.5 3M14 9h5M14 13h5" />
+            </svg>
+            <span class="label">Quản lý thông tin sinh viên</span>
+          </a>
+        </li>
+        <li class="has-sub" id="subStudy">
+          <a
+            href="#"
+            class="nav-link sub-toggle"
+            data-tip="Quản lý học tập"
+            aria-expanded="false"
+            aria-controls="studySub"
+          >
+            <svg class="ico" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2 7 4.8v5.4l5 2.8 5-2.8V4.8zM6 11.5 1 14.3v5.4l5 2.8 5-2.8v-5.4zm12 0-5 2.8v5.4l5 2.8 5-2.8v-5.4z"
+                opacity=".95"
+              />
+            </svg>
+            <span class="label">Quản lý học tập</span>
+            <svg
+              class="chevron"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </a>
+          <ul class="submenu" id="studySub">
+            <li>
+              <a href="#" class="sub-link" data-target="tra-cuu-diem"
+                ><span class="dot"></span
+                ><span class="sub-label">Tra cứu điểm</span></a
+              >
+            </li>
+            <li>
+              <a href="#" class="sub-link" data-target="tra-cuu-lich"
+                ><span class="dot"></span
+                ><span class="sub-label">Tra cứu lịch</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-tip="Quản lý tài chính">
+            <svg
+              class="ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 3h6l-1.5 3h-3zM10.5 6C6 8 4 12 4 16c0 3 2 5 8 5s8-2 8-5c0-4-2-8-6.500-10"
+              />
+              <path
+                d="M14 12.500c-.5-1-3.500-1.200-3.500.3 0 1.800 3.500 1 3.500 2.700 0 1.500-3 1.500-3.700.3M12 10.500v1M12 16.500v1"
+              />
+            </svg>
+            <span class="label">Quản lý tài chính</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Phần dưới cùng -->
+      <div class="nav-bottom">
+        <div class="user-profile">
+          <div class="avatar-user" id="avatarBtn" tabindex="0" data-tip="Admin">
+            <svg
+              class="ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c1-4.500 4-6 8-6s7 1.500 8 6" />
+            </svg>
+            <span class="label username">Admin</span>
           </div>
-          <a href="#" class="nav-link">
-            <span>Cài đặt</span>
-          </a>
-          <a href="#" class="nav-link">
-            <span>Đăng xuất</span>
-          </a>
+          <div class="dropdown-menu" id="userDropdown">
+            <a href="#" class="dropdown-item">Hồ sơ cá nhân</a>
+            <a href="#" class="dropdown-item">Cài đặt</a>
+          </div>
         </div>
+        <a href="#" class="nav-link" data-tip="Cài đặt">
+          <svg
+            class="ico"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.400 15a1.700 1.700 0 0 0 .3 1.800l.1.1a2 2 0 1 1-2.800 2.800l-.1-.1a1.700 1.700 0 0 0-1.800-.3 1.700 1.700 0 0 0-1 1.500V21a2 2 0 1 1-4 0v-.1a1.700 1.700 0 0 0-1.100-1.500 1.700 1.700 0 0 0-1.800.3l-.1.1a2 2 0 1 1-2.800-2.800l.1-.1a1.700 1.700 0 0 0 .3-1.800 1.700 1.700 0 0 0-1.500-1H3a2 2 0 1 1 0-4h.1a1.700 1.700 0 0 0 1.500-1.100 1.700 1.700 0 0 0-.3-1.800l-.1-.1a2 2 0 1 1 2.800-2.800l.1.1a1.700 1.700 0 0 0 1.800.3H9a1.700 1.700 0 0 0 1-1.500V3a2 2 0 1 1 4 0v.1a1.700 1.700 0 0 0 1 1.500 1.700 1.700 0 0 0 1.800-.3l.1-.1a2 2 0 1 1 2.800 2.800l-.1.1a1.700 1.700 0 0 0-.3 1.800V9a1.700 1.700 0 0 0 1.500 1H21a2 2 0 1 1 0 4h-.1a1.700 1.700 0 0 0-1.500 1z"
+            />
+          </svg>
+          <span class="label">Cài đặt</span>
+        </a>
+        <a href="#" class="nav-link" data-tip="Đăng xuất">
+          <svg
+            class="ico"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"
+            />
+          </svg>
+          <span class="label">Đăng xuất</span>
+        </a>
       </div>
     </nav>
+
     <script src="./nav-bar.css.js"></script>
   </body>
 </html>
