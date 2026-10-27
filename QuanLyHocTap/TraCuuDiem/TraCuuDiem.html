@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="tran ba thuong" />
+    <title>Tra cứu điểm sinh viên</title>
+    <link rel="stylesheet" href="TraCuuDiem.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <header class="title-section">
+        <h1>TRA CỨU ĐIỂM SINH VIÊN</h1>
+      </header>
+
+      <!-- THANH NÚT LỌC VÀ TÌM KIẾM -->
+      <section class="card filter-card">
+        <div class="filter-group">
+          <span class="filter-label">Lọc theo GPA:</span>
+          <button class="btn-filter active" data-gpa="all">Tất cả</button>
+          <button class="btn-filter" data-gpa="3.6">GPA &gt; 3.6</button>
+          <button class="btn-filter" data-gpa="3.2">GPA &gt; 3.2</button>
+          <button class="btn-filter" data-gpa="2.5">GPA &gt; 2.5</button>
+        </div>
+
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm theo tên hoặc MSV..."
+          />
+        </div>
+      </section>
+
+      <!-- KHU VỰC CHÍNH: DANH SÁCH & BẢNG ĐIỂM -->
+      <div class="main-grid">
+        <!-- Cột trái: Danh sách sinh viên -->
+        <section class="card list-section">
+          <h3>DANH SÁCH SINH VIÊN</h3>
+          <div class="student-list" id="studentList">
+            <div class="loading">Đang tải dữ liệu...</div>
+          </div>
+        </section>
+
+        <!-- Cột phải: Bảng điểm chi tiết -->
+        <section class="card detail-section">
+          <div id="detailContent">
+            <div class="placeholder-text">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              <p>
+                Chọn một sinh viên từ danh sách bên trái để xem bảng điểm chi
+                tiết.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="TraCuuDiem.js"></script>
+  </body>
+</html>

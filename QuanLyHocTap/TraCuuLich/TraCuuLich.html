@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="tran ba thuong" />
+    <title>Tra cứu lịch</title>
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="./TraCuuLich.css" />
+  </head>
+  <body>
+    <!-- ===== TRA CỨU LỊCH ===== -->
+    <section class="view" id="view-tra-cuu-lich">
+      <div class="crumb">Tra cứu lịch <span>›</span> <b>Lịch học</b></div>
+      <div class="card">
+        <h3 class="sec">Lớp học phần (không có lịch chi tiết)</h3>
+        <table class="tbl plain">
+          <thead>
+            <tr>
+              <th>Mã lớp</th>
+              <th>Tên lớp</th>
+              <th>Hình thức học</th>
+              <th>Ngày bắt đầu</th>
+              <th>Ngày kết thúc</th>
+              <th>Ghi chú</th>
+            </tr>
+          </thead>
+          <tbody id="noDetail"></tbody>
+        </table>
+        <div class="cal-bar">
+          <h3 class="sec">Lịch cá nhân</h3>
+          <div class="cal-ctl">
+            <button id="prevWk">‹</button><button id="todayWk">Hôm nay</button
+            ><button id="nextWk">›</button>
+            <span id="wkRange"></span>
+          </div>
+        </div>
+        <div class="cal-scroll"><div class="cal" id="cal"></div></div>
+      </div>
+    </section>
+    <script src="./TraCuuLich.js"></script>
+  </body>
+</html>

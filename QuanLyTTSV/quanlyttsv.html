@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="chuc anh viet" />
+    <title>Quản lý thông tin sinh viên</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="quanlyttsv.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- TIÊU ĐỀ TRANG -->
+      <header class="page-header">
+        <h1 class="page-title">HỆ THỐNG QUẢN LÝ THÔNG TIN SINH VIÊN</h1>
+        <div class="sub-tab-bar">
+          <span class="sub-tab-item active">HỒ SƠ VÀ DANH SÁCH SINH VIÊN</span>
+        </div>
+      </header>
+
+      <!-- PHẦN 1: HỒ SƠ SINH VIÊN (ADMIN CONTROL) -->
+      <section class="card profile-card">
+        <div class="section-badge-bar">
+          <div class="section-badge">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span>I. PHẦN BẢN THÂN HỌC SINH, SINH VIÊN</span>
+          </div>
+
+          <!-- THANH TÌM KIẾM SINH VIÊN -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="adminSearchInput"
+              class="input-text"
+              placeholder="Nhập tên hoặc Mã SV để tìm..."
+            />
+            <button class="btn-primary" onclick="searchStudentByAdmin()">
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
+
+        <div class="profile-layout">
+          <!-- Cột trái: Ảnh đại diện & Thông tin tổng quan -->
+          <div class="profile-sidebar">
+            <div class="avatar-wrapper">
+              <img
+                src="https://via.placeholder.com/130"
+                alt="Ảnh sinh viên"
+                class="avatar-img"
+                id="avatarImg"
+              />
+              <div class="camera-btn" title="Đổi ảnh">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                  />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="info-list" id="sidebarInfoList">
+              <!-- Thông tin sẽ hiển thị động từ JS -->
+            </div>
+          </div>
+
+          <!-- Cột phải: Bảng chi tiết cho phép chỉnh sửa từng dòng -->
+          <div class="profile-content">
+            <table class="form-table">
+              <thead>
+                <tr>
+                  <th style="width: 30%">TÊN THÔNG TIN</th>
+                  <th>GIÁ TRỊ DỮ LIỆU</th>
+                  <th style="width: 100px; text-align: center">THAO TÁC</th>
+                </tr>
+              </thead>
+              <tbody id="adminProfileTableBody">
+                <!-- Các dòng thông tin kèm ô input và nút Sửa render ở đây -->
+              </tbody>
+            </table>
+            <div class="form-actions">
+              <button class="btn-save" onclick="saveAllAdminChanges()">
+                Lưu tất cả thay đổi
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHẦN 2: BẢNG DANH SÁCH SINH VIÊN -->
+      <section class="card student-list-card">
+        <div class="card-title-bar">
+          <h2>II. DANH SÁCH SINH VIÊN</h2>
+          <span class="student-count" id="studentCount"
+            >Tổng số: 0 sinh viên</span
+          >
+        </div>
+
+        <!-- THANH NÚT LỌC HỌC LỰC GPA -->
+        <div class="filter-bar">
+          <button
+            class="btn-filter active"
+            onclick="filterStudents('all', this)"
+          >
+            Tất cả
+          </button>
+          <button class="btn-filter" onclick="filterStudents('gt36', this)">
+            GPA &gt; 3.6
+          </button>
+          <button class="btn-filter" onclick="filterStudents('32_36', this)">
+            3.2 &lt; GPA &le; 3.6
+          </button>
+          <button class="btn-filter" onclick="filterStudents('25_32', this)">
+            2.5 &lt; GPA &le; 3.2
+          </button>
+          <button class="btn-filter" onclick="filterStudents('lt25', this)">
+            GPA &le; 2.5
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 50px" class="text-center">STT</th>
+                <th style="width: 120px">Mã SV</th>
+                <th>Họ và tên</th>
+                <th>Lớp</th>
+                <th style="width: 110px" class="text-center">Điểm (GPA)</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <tr>
+                <td colspan="6" class="text-center">
+                  Đang tải dữ liệu từ file script.xlsx...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="quanlyttsv.js"></script>
+  </body>
+</html>

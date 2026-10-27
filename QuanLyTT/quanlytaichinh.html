@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý tài chính</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./quanlytaichinh.css" />
+</head>
+<body style="margin:0; font-family:'Roboto','Segoe UI',Arial,sans-serif; background:#eef3fc;">
+
+  <!-- ===================== BEGIN: PHẦN QUẢN LÝ TÀI CHÍNH ===================== -->
+  <section class="tc" id="tc" data-excel="script.xlsx" data-price="450000">
+    <header class="tc-head">
+      <div>
+        <h1>Quản lý tài chính</h1>
+        <p class="tc-sub">Theo dõi tình hình nộp học phí của sinh viên</p>
+      </div>
+      <div class="tc-actions">
+        <label class="tc-field">
+          <span>Đơn giá / tín chỉ (đ)</span>
+          <input id="tcPrice" type="number" min="0" step="10000" />
+        </label>
+        <button class="tc-btn" id="tcPick" type="button">Chọn file Excel</button>
+        <input id="tcFile" type="file" accept=".xlsx,.xls" hidden />
+      </div>
+    </header>
+
+    <p id="tcMsg" class="tc-msg"></p>
+
+    <div class="tc-stats">
+      <article class="tc-stat"><span>Tổng sinh viên</span><strong id="tcTotal">--</strong></article>
+      <article class="tc-stat ok"><span>Đã nộp đủ</span><strong id="tcPaid">--</strong></article>
+      <article class="tc-stat bad"><span>Chưa nộp đủ</span><strong id="tcUnpaid">--</strong></article>
+      <article class="tc-stat"><span>Đã thu / Phải thu</span><strong id="tcMoney">--</strong><small id="tcPct"></small></article>
+    </div>
+
+    <div class="tc-panel">
+      <div class="tc-toolbar">
+        <div class="tc-tabs" role="tablist">
+          <button class="tc-tab active" data-filter="all" role="tab">Tất cả <b id="tcCntAll">0</b></button>
+          <button class="tc-tab" data-filter="paid" role="tab">Đã nộp đủ <b id="tcCntPaid">0</b></button>
+          <button class="tc-tab" data-filter="unpaid" role="tab">Chưa nộp đủ <b id="tcCntUnpaid">0</b></button>
+        </div>
+        <div class="tc-tools">
+          <select id="tcClass" aria-label="Lọc theo lớp"><option value="">Tất cả các lớp</option></select>
+          <input id="tcSearch" type="search" placeholder="Tìm theo tên / MSV" />
+          <button class="tc-btn tc-primary" id="tcExport" type="button">Xuất CSV</button>
+        </div>
+      </div>
+
+      <div class="tc-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th><th>MSV</th><th>Họ và tên</th><th>Lớp</th>
+              <th class="r">Học phí phải nộp</th><th class="r">Đã nộp</th><th class="r">Còn thiếu</th>
+              <th>Trạng thái</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="tcBody"></tbody>
+        </table>
+        <p class="tc-none" id="tcNone" hidden>Không có sinh viên nào phù hợp.</p>
+      </div>
+    </div>
+
+    <p class="tc-note">
+      File Excel chưa có cột học phí, nên học phí = tổng tín chỉ × đơn giá/tín chỉ và tình trạng nộp tiền đang là
+      <b>dữ liệu mẫu</b> (lưu trong trình duyệt).
+      <button class="tc-link" id="tcReset" type="button">Đặt lại dữ liệu mẫu</button>
+    </p>
+  </section>
+  <!-- ====================== END: PHẦN QUẢN LÝ TÀI CHÍNH ====================== -->
+
+  <!-- Thư viện đọc Excel: chỉ cần nạp 1 lần cho cả trang tổng -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./quanlytaichinh.js"></script>
+</body>
+</html>
